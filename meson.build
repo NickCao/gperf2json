@@ -1,17 +1,17 @@
 project('gperf2json', 'cpp')
-gperfsrc = include_directories('gperf-3.1/src')
-gperflib = include_directories('gperf-3.1/lib')
+gperf = get_option('gperf')
+incdir = include_directories(f'@gperf@/src', f'@gperf@/lib')
 nlohmann_json = dependency('nlohmann_json')
 executable(
   'gperf2json',
   'gperf2json.cc',
-  'gperf-3.1/lib/getline.cc',
-  'gperf-3.1/src/input.cc',
-  'gperf-3.1/src/options.cc',
-  'gperf-3.1/src/keyword.cc',
-  'gperf-3.1/src/keyword-list.cc',
-  'gperf-3.1/src/version.cc',
-  include_directories : [ gperfsrc, gperflib ],
+  f'@gperf@/lib/getline.cc',
+  f'@gperf@/src/input.cc',
+  f'@gperf@/src/options.cc',
+  f'@gperf@/src/keyword.cc',
+  f'@gperf@/src/keyword-list.cc',
+  f'@gperf@/src/version.cc',
+  include_directories : incdir,
   dependencies : [ nlohmann_json ],
   install : true,
 )
