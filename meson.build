@@ -1,6 +1,7 @@
 project('gperf2json', 'cpp')
 gperfsrc = include_directories('gperf-3.1/src')
 gperflib = include_directories('gperf-3.1/lib')
+nlohmann_json = dependency('nlohmann_json')
 executable(
   'gperf2json',
   'gperf2json.cc',
@@ -11,5 +12,6 @@ executable(
   'gperf-3.1/src/keyword-list.cc',
   'gperf-3.1/src/version.cc',
   include_directories : [ gperfsrc, gperflib ],
+  dependencies : [ nlohmann_json ],
   install : true,
 )
